@@ -26,35 +26,7 @@ export class Tab2Page {
     await this.loadCities();
   }
 
-  async saveCity() {
-    if (this.city) {
-      const exists = await this.weatherService.checkCityExists(this.city);
-      const isDuplicate = await this.storageService.cityExists(this.city);
-
-      if (!exists) {
-        alert('Zadané město neexistuje!');
-        return;
-      }
-
-      if (isDuplicate) {
-        alert('Město již existuje v seznamu!');
-        return;
-      }
-
-      await this.storageService.addCity(this.city);
-      this.city = '';
-      this.suggestedCities = [];
-      await this.loadCities();
-      alert('Město bylo uloženo!');
-    }
-  }
-
-  async removeCity(city: string) {
-    await this.storageService.removeCity(city); // Odstranění města pomocí služby
-    await this.loadCities(); // Aktualizace seznamu po odstranění
-    alert(`Město "${city}" bylo odstraněno!`);
-  }
-
+  
   async searchCities(event: any) {
     const query = event.target.value.trim();
     if (query.length > 1) {
@@ -66,6 +38,28 @@ export class Tab2Page {
     } else {
       this.suggestedCities = [];
     }
+  }
+  
+  async selectSuggestedCity(city: string) {
+    const isDuplicate = await this.storageService.cityExists(city);
+
+    if (isDuplicate) {
+      alert('Město již existuje v seznamu!');
+      return;
+    }
+
+    await this.storageService.addCity(city);
+    this.city = '';
+    this.suggestedCities = []; // Vyčistíme seznam doporučení
+    await this.loadCities();
+    alert(`Město "${city}" bylo uloženo!`);
+  }
+   
+
+  async removeCity(city: string) {
+    await this.storageService.removeCity(city); // Odstranění města pomocí služby
+    await this.loadCities(); // Aktualizace seznamu po odstranění
+    alert(`Město "${city}" bylo odstraněno!`);
   }
 
   async loadCities() {

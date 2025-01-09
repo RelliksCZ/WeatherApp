@@ -17,13 +17,11 @@
   <ion-list *ngIf="suggestedCities.length > 0">
     <ion-item
       *ngFor="let suggestedCity of suggestedCities"
-      (click)="city = suggestedCity; suggestedCities = []"
+      (click)="selectSuggestedCity(suggestedCity)"
     >
       {{ suggestedCity }}
     </ion-item>
   </ion-list>
-
-  <ion-button expand="block" (click)="saveCity()">Uložit město</ion-button>
 
   <ion-list>
     <ion-list-header>
