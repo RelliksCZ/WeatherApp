@@ -18,24 +18,38 @@ export class Tab2Page {
   ) {}
 
   async ngOnInit() {
+    // Načtení měst při prvním načtení stránky
+    await this.loadCities();
+  }
+
+  async ionViewWillEnter() {
+    // Načtení měst pokaždé, když uživatel přejde na stránku
     await this.loadCities();
   }
 
   async saveCity() {
     if (this.city) {
       const exists = await this.weatherService.checkCityExists(this.city);
-      if (exists) {
-        await this.storageService.addCity(this.city);
-        this.city = '';
-        await this.loadCities();
-        alert('Město bylo uloženo!');
-      } else {
+      const isDuplicate = await this.storageService.cityExists(this.city);
+
+      if (!exists) {
         alert('Zadané město neexistuje!');
+        return;
       }
+
+      if (isDuplicate) {
+        alert('Město již existuje v seznamu!');
+        return;
+      }
+
+      await this.storageService.addCity(this.city);
+      this.city = '';
+      await this.loadCities(); // Aktualizace seznamu po uložení města
+      alert('Město bylo uloženo!');
     }
   }
 
   async loadCities() {
-    this.cities = await this.storageService.getCities();
+    this.cities = await this.storageService.getCities(); // Načtení uložených měst
   }
 }

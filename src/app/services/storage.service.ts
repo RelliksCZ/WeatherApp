@@ -16,8 +16,7 @@ export class StorageService {
     this._storage = storage;
   }
 
-  // Přidání města do seznamu
-  async addCity(city: string) {
+  public async addCity(city: string) {
     const cities = (await this.get('cities')) || [];
     if (!cities.includes(city)) {
       cities.push(city);
@@ -25,9 +24,13 @@ export class StorageService {
     }
   }
 
-  // Získání seznamu měst
-  async getCities(): Promise<string[]> {
+  public async getCities(): Promise<string[]> {
     return (await this.get('cities')) || [];
+  }
+
+  public async cityExists(city: string): Promise<boolean> {
+    const cities = (await this.get('cities')) || [];
+    return cities.some((savedCity: string) => savedCity.toLowerCase() === city.toLowerCase());
   }
 
   private async set(key: string, value: any) {
