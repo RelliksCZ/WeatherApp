@@ -10,4 +10,13 @@
     <ion-input [(ngModel)]="city" placeholder="Např. Praha"></ion-input>
   </ion-item>
   <ion-button expand="block" (click)="saveCity()">Uložit město</ion-button>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Uložená města</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let savedCity of cities">
+      {{ savedCity }}
+    </ion-item>
+  </ion-list>
 </ion-content>

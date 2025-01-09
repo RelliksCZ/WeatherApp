@@ -16,11 +16,25 @@ export class StorageService {
     this._storage = storage;
   }
 
-  public set(key: string, value: any) {
+  // Přidání města do seznamu
+  async addCity(city: string) {
+    const cities = (await this.get('cities')) || [];
+    if (!cities.includes(city)) {
+      cities.push(city);
+      await this.set('cities', cities);
+    }
+  }
+
+  // Získání seznamu měst
+  async getCities(): Promise<string[]> {
+    return (await this.get('cities')) || [];
+  }
+
+  private async set(key: string, value: any) {
     return this._storage?.set(key, value);
   }
 
-  public get(key: string) {
+  private async get(key: string) {
     return this._storage?.get(key);
   }
 }

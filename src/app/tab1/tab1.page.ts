@@ -10,6 +10,8 @@ import { StorageService } from '../services/storage.service';
 })
 export class Tab1Page implements OnInit {
   weather: any;
+  cities: string[] = [];
+  selectedCity: string = '';
 
   constructor(
     private weatherService: WeatherService,
@@ -17,20 +19,23 @@ export class Tab1Page implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.loadWeather();
+    // Inicializace a načtení dat při spuštění
+    await this.loadCities();
+    if (this.cities.length > 0) {
+      this.selectedCity = this.cities[0]; // Nastaví první město jako výchozí
+      this.getWeather(this.selectedCity);
+    }
   }
 
   async ionViewWillEnter() {
-    // Tato metoda se volá při každém návratu na stránku
-    await this.loadWeather();
+    // Načtení měst pokaždé, když uživatel přejde na kartu
+    await this.loadCities();
   }
 
-  async loadWeather() {
-    const city = await this.storageService.get('city');
-    if (city) {
-      this.getWeather(city);
-    } else {
-      this.getWeather('Prague'); // Výchozí město
+  async loadCities() {
+    this.cities = await this.storageService.getCities();
+    if (this.cities.length > 0 && !this.selectedCity) {
+      this.selectedCity = this.cities[0]; // Nastavíme první město, pokud není vybrané
     }
   }
 

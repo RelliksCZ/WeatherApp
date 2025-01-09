@@ -1,10 +1,17 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Počasí</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <ion-item>
+    <ion-label>Vyberte město</ion-label>
+    <ion-select [(ngModel)]="selectedCity" (ionChange)="getWeather(selectedCity)">
+      <ion-select-option *ngFor="let city of cities">{{ city }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-card *ngIf="weather">
     <ion-card-header>
       <ion-card-title>{{ weather.location.name }}</ion-card-title>

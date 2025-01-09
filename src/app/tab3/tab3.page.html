@@ -5,12 +5,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Vyberte město</ion-label>
+    <ion-select [(ngModel)]="selectedCity" (ionChange)="getForecast(selectedCity)">
+      <ion-select-option *ngFor="let city of cities">{{ city }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-list *ngIf="forecast">
+    <ion-list-header>
+      <ion-label>Předpověď počasí</ion-label>
+    </ion-list-header>
     <ion-item *ngFor="let day of forecast">
       <ion-label>
-        <h2>Date: {{ day.date }}</h2>
-        <p>Temperature: {{ day.day.avgtemp_c }} °C</p>
-        <p>Condition: {{ day.day.condition.text }}</p>
+        <h2>{{ day.date }}</h2>
+        <p>Teplota: {{ day.day.avgtemp_c }} °C</p>
+        <p>Stav: {{ day.day.condition.text }}</p>
       </ion-label>
       <ion-thumbnail slot="end">
         <img [src]="day.day.condition.icon" />

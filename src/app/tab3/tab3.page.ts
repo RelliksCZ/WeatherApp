@@ -10,6 +10,8 @@ import { StorageService } from '../services/storage.service';
 })
 export class Tab3Page implements OnInit {
   forecast: any;
+  cities: string[] = [];
+  selectedCity: string = '';
 
   constructor(
     private weatherService: WeatherService,
@@ -17,21 +19,20 @@ export class Tab3Page implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.loadForecast();
+    await this.loadCities();
+    if (this.cities.length > 0) {
+      this.selectedCity = this.cities[0]; // Výchozí město
+      this.getForecast(this.selectedCity);
+    }
   }
 
-  async loadForecast() {
-    const city = await this.storageService.get('city');
-    if (city) {
-      this.getForecast(city);
-    } else {
-      this.getForecast('Prague'); // Výchozí město
-    }
+  async loadCities() {
+    this.cities = await this.storageService.getCities();
   }
 
   getForecast(city: string) {
     this.weatherService.getForecast(city).subscribe((data) => {
-      this.forecast = data.forecast.forecastday; // Ukládáme pouze pole s předpověďmi
+      this.forecast = data.forecast.forecastday;
     });
   }
 }

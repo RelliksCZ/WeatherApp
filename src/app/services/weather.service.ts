@@ -20,6 +20,17 @@ export class WeatherService {
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${city}&days=5`;
     return this.http.get(url);
   }
+
+  checkCityExists(city: string): Promise<boolean> {
+    const url = `https://api.weatherapi.com/v1/current.json?key=${this.apiKey}&q=${city}`;
+    return new Promise((resolve) => {
+      this.http.get(url).subscribe(
+        () => resolve(true), // Pokud API vrátí data, město existuje
+        () => resolve(false) // Pokud API vrátí chybu, město neexistuje
+      );
+    });
+  }
+  
   
 }
 
