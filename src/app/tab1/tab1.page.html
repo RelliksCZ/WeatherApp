@@ -1,17 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Počasí</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card *ngIf="weather">
+    <ion-card-header>
+      <ion-card-title>{{ weather.name }}</ion-card-title>
+      <ion-card-subtitle>{{ weather.weather[0].description }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Teplota: {{ weather.main.temp }} °C</p>
+      <p>Vlhkost: {{ weather.main.humidity }} %</p>
+      <p>Vítr: {{ weather.wind.speed }} m/s</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
