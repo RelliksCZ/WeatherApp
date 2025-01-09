@@ -5,6 +5,7 @@ import { WeatherService } from '../services/weather.service';
   selector: 'app-tab1',
   templateUrl: './tab1.page.html',
   styleUrls: ['./tab1.page.scss'],
+  standalone: false,
 })
 export class Tab1Page implements OnInit {
   weather: any;
@@ -12,7 +13,7 @@ export class Tab1Page implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
-    this.getWeather('Prague'); // Výchozí město
+    this.getWeather('Prague');
   }
 
   getWeather(city: string) {

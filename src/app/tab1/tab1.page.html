@@ -7,13 +7,13 @@
 <ion-content [fullscreen]="true">
   <ion-card *ngIf="weather">
     <ion-card-header>
-      <ion-card-title>{{ weather.name }}</ion-card-title>
-      <ion-card-subtitle>{{ weather.weather[0].description }}</ion-card-subtitle>
+      <ion-card-title>{{ weather.location.name }}</ion-card-title>
+      <ion-card-subtitle>{{ weather.current.condition.text }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <p>Teplota: {{ weather.main.temp }} °C</p>
-      <p>Vlhkost: {{ weather.main.humidity }} %</p>
-      <p>Vítr: {{ weather.wind.speed }} m/s</p>
+      <p>Teplota: {{ weather.current.temp_c }} °C</p>
+      <p>Vlhkost: {{ weather.current.humidity }} %</p>
+      <p>Vítr: {{ weather.current.wind_kph }} km/h</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
