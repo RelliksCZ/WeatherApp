@@ -15,4 +15,11 @@ export class WeatherService {
     const url = `${this.apiUrl}?key=${this.apiKey}&q=${city}&aqi=no`; // AQI vypnuto
     return this.http.get(url);
   }
+
+  getForecast(city: string): Observable<any> {
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${this.apiKey}&q=${city}&days=5`;
+    return this.http.get(url);
+  }
+  
 }
+
