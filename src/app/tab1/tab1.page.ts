@@ -9,9 +9,9 @@ import { StorageService } from '../services/storage.service';
   standalone: false,
 })
 export class Tab1Page implements OnInit {
-  weather: any;
   cities: string[] = [];
   selectedCity: string = '';
+  weatherData: any = null;
 
   constructor(
     private weatherService: WeatherService,
@@ -19,29 +19,42 @@ export class Tab1Page implements OnInit {
   ) {}
 
   async ngOnInit() {
-    // Inicializace a načtení dat při spuštění
     await this.loadCities();
     if (this.cities.length > 0) {
-      this.selectedCity = this.cities[0]; // Nastaví první město jako výchozí
-      this.getWeather(this.selectedCity);
+      this.selectedCity = this.cities[0];
+      await this.loadWeatherData();
     }
   }
 
   async ionViewWillEnter() {
-    // Načtení měst pokaždé, když uživatel přejde na kartu
     await this.loadCities();
+    if (!this.selectedCity && this.cities.length > 0) {
+      this.selectedCity = this.cities[0];
+      await this.loadWeatherData();
+    }
   }
 
   async loadCities() {
     this.cities = await this.storageService.getCities();
-    if (this.cities.length > 0 && !this.selectedCity) {
-      this.selectedCity = this.cities[0]; // Nastavíme první město, pokud není vybrané
+  }
+
+  async loadWeatherData() {
+    if (this.selectedCity) {
+      this.weatherService.getWeather(this.selectedCity).subscribe((data) => {
+        this.weatherData = {
+          temperature: data.current.temp_c,
+          condition: data.current.condition.text,
+          icon: data.current.condition.icon,
+          wind: data.current.wind_kph,
+          humidity: data.current.humidity,
+          feelsLike: data.current.feelslike_c,
+          pressure: data.current.pressure_mb,
+        };
+      });
     }
   }
 
-  getWeather(city: string) {
-    this.weatherService.getWeather(city).subscribe((data) => {
-      this.weather = data;
-    });
+  onCityChange() {
+    this.loadWeatherData();
   }
 }

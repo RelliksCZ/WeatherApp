@@ -5,22 +5,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item *ngIf="cities.length > 0">
     <ion-label>Vyberte město</ion-label>
-    <ion-select [(ngModel)]="selectedCity" (ionChange)="getWeather(selectedCity)">
+    <ion-select [(ngModel)]="selectedCity" (ionChange)="onCityChange()">
       <ion-select-option *ngFor="let city of cities">{{ city }}</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-card *ngIf="weather">
+  <ion-card *ngIf="weatherData">
     <ion-card-header>
-      <ion-card-title>{{ weather.location.name }}</ion-card-title>
-      <ion-card-subtitle>{{ weather.current.condition.text }}</ion-card-subtitle>
+      <ion-card-title>{{ selectedCity }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Teplota: {{ weather.current.temp_c }} °C</p>
-      <p>Vlhkost: {{ weather.current.humidity }} %</p>
-      <p>Vítr: {{ weather.current.wind_kph }} km/h</p>
+      <div class="weather-info">
+        <img [src]="weatherData.icon" alt="Weather icon" />
+        <div>
+          <p>Teplota: {{ weatherData.temperature }} °C</p>
+          <p>Pocitová teplota: {{ weatherData.feelsLike }} °C</p>
+          <p>Stav: {{ weatherData.condition }}</p>
+          <p>Vítr: {{ weatherData.wind }} km/h</p>
+          <p>Vlhkost: {{ weatherData.humidity }} %</p>
+          <p>Tlak: {{ weatherData.pressure }} hPa</p>
+        </div>
+      </div>
     </ion-card-content>
   </ion-card>
+
+  <ion-text *ngIf="cities.length === 0" color="medium">
+    <p class="ion-padding">Nemáte uložená žádná města. Přejděte na kartu Nastavení a přidejte města.</p>
+  </ion-text>
 </ion-content>
