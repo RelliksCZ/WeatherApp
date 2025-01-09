@@ -19,9 +19,21 @@ export class Tab3Page implements OnInit {
   ) {}
 
   async ngOnInit() {
+    // Načtení seznamu měst při prvním načtení stránky
     await this.loadCities();
     if (this.cities.length > 0) {
-      this.selectedCity = this.cities[0]; // Výchozí město
+      this.selectedCity = this.cities[0];
+      this.getForecast(this.selectedCity);
+    }
+  }
+
+  async ionViewWillEnter() {
+    // Načtení seznamu měst při každém přechodu na stránku
+    await this.loadCities();
+    if (this.cities.length === 0) {
+      this.forecast = null; // Vymažeme předpověď, pokud nejsou žádná města
+    } else if (!this.selectedCity || !this.cities.includes(this.selectedCity)) {
+      this.selectedCity = this.cities[0];
       this.getForecast(this.selectedCity);
     }
   }

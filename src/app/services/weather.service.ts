@@ -21,6 +21,20 @@ export class WeatherService {
     return this.http.get(url);
   }
 
+  searchCities(query: string): Promise<string[]> {
+    const url = `https://api.weatherapi.com/v1/search.json?key=${this.apiKey}&q=${query}`;
+    return new Promise((resolve, reject) => {
+      this.http.get<any[]>(url).subscribe(
+        (results) => {
+          const cityNames = results.map((result) => result.name); // Vrátíme pouze názvy měst
+          resolve(cityNames);
+        },
+        (error) => reject(error)
+      );
+    });
+  }
+  
+
   checkCityExists(city: string): Promise<boolean> {
     const url = `https://api.weatherapi.com/v1/current.json?key=${this.apiKey}&q=${city}`;
     return new Promise((resolve) => {

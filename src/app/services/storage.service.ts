@@ -40,4 +40,10 @@ export class StorageService {
   private async get(key: string) {
     return this._storage?.get(key);
   }
+
+  public async removeCity(city: string) {
+    const cities = (await this.get('cities')) || [];
+    const filteredCities = cities.filter((savedCity: string) => savedCity.toLowerCase() !== city.toLowerCase());
+    await this.set('cities', filteredCities);
+  }
 }
