@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+  <!-- Dropdown pro výběr města -->
   <ion-item *ngIf="cities.length > 0">
     <ion-label>Vyberte město</ion-label>
     <ion-select [(ngModel)]="selectedCity" (ionChange)="onCityChange()">
@@ -12,25 +13,71 @@
     </ion-select>
   </ion-item>
 
-  <ion-card *ngIf="weatherData">
-    <ion-card-header>
-      <ion-card-title>{{ selectedCity }}</ion-card-title>
-    </ion-card-header>
+  <!-- Aktuální počasí -->
+  <ion-card *ngIf="weatherData" class="weather-card">
     <ion-card-content>
-      <div class="weather-info">
+      <h1 class="weather-city">{{ selectedCity }}</h1>
+      <!-- Stav a ikona -->
+      <div class="weather-condition">
         <img [src]="weatherData.icon" alt="Weather icon" />
-        <div>
-          <p>Teplota: {{ weatherData.temperature }} °C</p>
-          <p>Pocitová teplota: {{ weatherData.feelsLike }} °C</p>
-          <p>Stav: {{ weatherData.condition }}</p>
+        <h2>{{ weatherData.condition }}</h2>
+      </div>
+
+      <!-- Teplota -->
+      <div class="weather-temperature">
+        <h1>{{ weatherData.temperature }}°C</h1>
+        <p>Pocitová teplota: {{ weatherData.feelsLike }}°C</p>
+      </div>
+
+      <!-- Další informace -->
+      <div class="weather-info-row">
+        <div class="weather-info-item">
+          <ion-icon name="speedometer-outline"></ion-icon>
           <p>Vítr: {{ weatherData.wind }} km/h</p>
+        </div>
+        <div class="weather-info-item">
+          <ion-icon name="water-outline"></ion-icon>
           <p>Vlhkost: {{ weatherData.humidity }} %</p>
+        </div>
+        <div class="weather-info-item">
+          <ion-icon name="barometer-outline"></ion-icon>
           <p>Tlak: {{ weatherData.pressure }} hPa</p>
         </div>
       </div>
     </ion-card-content>
   </ion-card>
 
+<!-- Budoucí počasí -->
+<ion-card class="forecast-card">
+  <ion-card-header>
+    <ion-card-title>Předpověď na další dny</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item *ngFor="let day of forecast" class="forecast-item">
+        <!-- Datum -->
+        <div class="forecast-date">
+          {{ day.date | date: 'EEE' }}
+        </div>
+
+        <!-- Ikona a popis stavu počasí -->
+        <div class="forecast-info">
+          <img [src]="day.day.condition.icon" alt="Weather icon" />
+          <span>{{ day.day.condition.text }}</span>
+        </div>
+
+        <!-- Teplota -->
+        <div class="forecast-temp">
+          {{ day.day.avgtemp_c }}°C
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+
+
+  <!-- Zpráva, pokud nejsou žádná města -->
   <ion-text *ngIf="cities.length === 0" color="medium">
     <p class="ion-padding">Nemáte uložená žádná města. Přejděte na kartu Nastavení a přidejte města.</p>
   </ion-text>

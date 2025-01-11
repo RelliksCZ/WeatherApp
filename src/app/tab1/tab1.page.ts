@@ -12,6 +12,7 @@ export class Tab1Page implements OnInit {
   cities: string[] = [];
   selectedCity: string = '';
   weatherData: any = null;
+  forecast: any[] = []; // Přidáno pro budoucí počasí
 
   constructor(
     private weatherService: WeatherService,
@@ -23,14 +24,18 @@ export class Tab1Page implements OnInit {
     if (this.cities.length > 0) {
       this.selectedCity = this.cities[0];
       await this.loadWeatherData();
+      this.getForecast(this.selectedCity);
     }
   }
 
   async ionViewWillEnter() {
     await this.loadCities();
-    if (!this.selectedCity && this.cities.length > 0) {
-      this.selectedCity = this.cities[0];
+    if (this.cities.length > 0) {
+      if (!this.selectedCity || !this.cities.includes(this.selectedCity)) {
+        this.selectedCity = this.cities[0];
+      }
       await this.loadWeatherData();
+      this.getForecast(this.selectedCity);
     }
   }
 
@@ -54,7 +59,14 @@ export class Tab1Page implements OnInit {
     }
   }
 
+  getForecast(city: string) {
+    this.weatherService.getForecast(city).subscribe((data) => {
+      this.forecast = data.forecast.forecastday;
+    });
+  }
+
   onCityChange() {
     this.loadWeatherData();
+    this.getForecast(this.selectedCity);
   }
 }
