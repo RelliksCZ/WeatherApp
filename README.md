@@ -1,7 +1,7 @@
 # Weather Application
 
 ## Overview
-This Weather Application provides users with current weather information and a 5-day forecast for selected cities. Users can save their favorite cities, adjust the app's display settings, and customize how forecast data is presented.
+This Weather Application provides users with current weather information and a 4-day forecast for selected cities. Users can save their favorite cities, adjust the app's display settings, and customize how forecast data is presented.
 
 ---
 
@@ -9,7 +9,7 @@ This Weather Application provides users with current weather information and a 5
 
 ### Core Features
 - **Current Weather**: Displays temperature, condition, wind speed, humidity, pressure, and feels-like temperature for a selected city.
-- **5-Day Forecast**: Provides a detailed forecast with either day names or full dates, depending on user preference.
+- **4-Day Forecast**: Provides a detailed forecast with either day names or full dates, depending on user preference.
 - **City Management**: Users can search for cities, add them to a saved list, or remove them as needed.
 - **Settings**:
   - **Display Preferences**: Toggle between viewing day names or full dates in the forecast.
