@@ -4,15 +4,17 @@ import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-tab1',
+  standalone: false,
   templateUrl: './tab1.page.html',
   styleUrls: ['./tab1.page.scss'],
-  standalone: false,
 })
 export class Tab1Page implements OnInit {
   cities: string[] = [];
   selectedCity: string = '';
   weatherData: any = null;
-  forecast: any[] = []; // Přidáno pro budoucí počasí
+  forecast: any[] = [];
+  displayMode: string = 'days'; // Výchozí zobrazení
+  currentDate: Date = new Date(); // Přidána vlastnost pro aktuální datum
 
   constructor(
     private weatherService: WeatherService,
@@ -21,6 +23,7 @@ export class Tab1Page implements OnInit {
 
   async ngOnInit() {
     await this.loadCities();
+    await this.loadDisplayMode();
     if (this.cities.length > 0) {
       this.selectedCity = this.cities[0];
       await this.loadWeatherData();
@@ -30,6 +33,7 @@ export class Tab1Page implements OnInit {
 
   async ionViewWillEnter() {
     await this.loadCities();
+    await this.loadDisplayMode();
     if (this.cities.length > 0) {
       if (!this.selectedCity || !this.cities.includes(this.selectedCity)) {
         this.selectedCity = this.cities[0];
@@ -41,6 +45,10 @@ export class Tab1Page implements OnInit {
 
   async loadCities() {
     this.cities = await this.storageService.getCities();
+  }
+
+  async loadDisplayMode() {
+    this.displayMode = (await this.storageService.getItem('displayMode')) || 'days';
   }
 
   async loadWeatherData() {

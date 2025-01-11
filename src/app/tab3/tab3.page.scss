@@ -1,0 +1,53 @@
+/* ========================= */
+/* O aplikaci karta          */
+/* ========================= */
+.about-card {
+  background: linear-gradient(to bottom, #f2f4ff, #e1e6ff); /* Světle modrý gradient */
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.about-card ion-card-title {
+  font-weight: bold;
+  color: #333; /* Tmavší text */
+  text-align: center;
+}
+
+/* ========================= */
+/* Preference zobrazení karta */
+/* ========================= */
+.settings-card {
+  background: linear-gradient(to bottom, #ebe1ff, #d7ccff); /* Světle fialový gradient */
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+  margin-top: 20px;
+  color: #333;
+}
+
+.settings-card ion-card-title {
+  font-weight: bold;
+  color: black; /* Tmavý text */
+  text-align: center;
+}
+
+.settings-card ion-item {
+  --background: transparent; /* Transparentní pozadí uvnitř karty */
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-card ion-segment-button {
+  --color: #333; /* Barva textu */
+  font-weight: bold;
+  text-transform: none; /* Nezměněný text */
+}
+
+ion-title{
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}

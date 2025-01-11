@@ -1,3 +1,69 @@
+/* ========================= */
+/* Dropdown menu pro výběr města */
+/* ========================= */
+.dropdown-wrapper {
+    margin-top: 15px;
+    text-align: center;
+    background: linear-gradient(to bottom, #ebe1ff, #d7ccff); /* Gradientní pozadí */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Jemný stín */
+  }
+  
+  .dropdown-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Barva textu */
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .dropdown-item {
+    background: linear-gradient(to bottom, #f2f4ff, #e1e6ff); /* Gradientní pozadí */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    color: black; /* Barva textu */
+  }
+  
+  .dropdown-item ion-select-option {
+    background: #f2f4ff; /* Jemný modrý odstín */
+    color: #333; /* Barva textu */
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Dropdown karta */
+.dropdown-card {
+    background: linear-gradient(to bottom, #ebe1ff, #d7ccff);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Styl nadpisu */
+.dropdown-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Dropdown samotný */
+.dropdown-item {
+    display: flex;
+    justify-content: center; /* Město bude na středu */
+    align-items: center;
+    background: linear-gradient(to bottom, #f2f4ff, #e1e6ff);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Hlavní karta počasí */
 .weather-card {
     text-align: center;
@@ -48,33 +114,43 @@
     font-size: 24px;
     color: #555;
   }
-
+  
+  .weather-city {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .weather-date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
   /* Předpověď na další dny */
-  /* Celé pozadí forecast-card */
-.forecast-card {
+  .forecast-card {
     background: linear-gradient(to bottom, #ebe1ff, #d7ccff);
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    color: #333; /* Barva textu */
+    color: #333;
   }
   
-  /* Stylování jednotlivých položek uvnitř forecast-card */
   .forecast-card ion-list {
-    background: transparent; /* Transparentní pozadí pro list */
+    background: transparent;
   }
   
   .forecast-card ion-card-title {
-    color: black; /* Tmavší odstín */
+    color: black;
     font-weight: bold;
     text-align: center;
   }
   
-
   .forecast-card ion-item {
     background: linear-gradient(to bottom, #f2f4ff, #e1e6ff) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Jemné oddělení mezi řádky */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,18 +158,17 @@
   }
   
   .forecast-card ion-item:last-child {
-    border-bottom: none; /* Poslední řádek bez oddělovací čáry */
+    border-bottom: none;
   }
   
-  /* Datum v předpovědi */
   .forecast-date {
     flex: 1;
     font-size: 16px;
     font-weight: bold;
-    color: #4a4a4a; /* Barva textu */
+    color: #4a4a4a;
+    text-align: left;
   }
   
-  /* Informace o počasí (ikona a stav) */
   .forecast-info {
     flex: 2;
     display: flex;
@@ -101,6 +176,7 @@
     gap: 10px;
     font-size: 16px;
     color: #4a4a4a;
+    justify-content: center;
   }
   
   .forecast-info img {
@@ -108,54 +184,22 @@
     height: 40px;
   }
   
-  /* Teplota v předpovědi */
   .forecast-temp {
     flex: 1;
-    text-align: right;
     font-size: 16px;
     font-weight: bold;
-    color: #4a4a4a; /* Barva textu */
-  }
-  
-  .forecast-item::after {
-    display: none; /* Skryje pseudoelement */
+    color: #4a4a4a;
+    text-align: right;
   }
   
   .forecast-item {
-    background: linear-gradient(to right, #f2f4ff, #e1e6ff); /* Gradientní pozadí */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #f2f4ff, #e1e6ff);
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 10px; /* Mezera mezi položkami */
+    margin-bottom: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  .forecast-item .forecast-date {
-    font-size: 16px;
-    font-weight: bold;
-    color: #4a4a4a; /* Šedá barva textu */
-  }
-  
-  .forecast-item .forecast-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    color: #4a4a4a;
-  }
-  
-  .forecast-item .forecast-info img {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .forecast-item .forecast-temp {
-    font-size: 16px;
-    font-weight: bold;
-    color: #4a4a4a;
-    text-align: right;
-  }
-  
-  ion-item {
-    --border-color: transparent; /* Odstraní okraje */
-    --background: transparent; /* Transparentní pozadí */
-  }

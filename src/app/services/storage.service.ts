@@ -46,4 +46,12 @@ export class StorageService {
     const filteredCities = cities.filter((savedCity: string) => savedCity.toLowerCase() !== city.toLowerCase());
     await this.set('cities', filteredCities);
   }
+
+  async setItem(key: string, value: any) {
+    await this.storage.set(key, value);
+  }
+
+  async getItem(key: string) {
+    return await this.storage.get(key);
+  }
 }

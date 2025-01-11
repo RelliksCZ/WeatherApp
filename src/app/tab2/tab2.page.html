@@ -4,34 +4,53 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label position="floating">Zadejte město</ion-label>
-    <ion-input
-      [(ngModel)]="city"
-      placeholder="Např. Praha"
-      (ionInput)="searchCities($event)"
-    ></ion-input>
-  </ion-item>
+<ion-content class="settings-content">
+  <!-- Zadání města -->
+  <ion-card class="settings-card">
+    <ion-card-header>
+      <ion-card-title>Přidat město</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="input-item">
+        <ion-input
+          [(ngModel)]="city"
+          placeholder="Např. Praha"
+          (ionInput)="searchCities($event)"
+        ></ion-input>
+      </ion-item>
+      <ion-list *ngIf="suggestedCities.length > 0" class="search-city-item">
+        <ion-item
+          *ngFor="let suggestedCity of suggestedCities"
+          class="suggested-item"
+          (click)="selectSuggestedCity(suggestedCity)"
+        >
+          {{ suggestedCity }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-list *ngIf="suggestedCities.length > 0">
-    <ion-item
-      *ngFor="let suggestedCity of suggestedCities"
-      (click)="selectSuggestedCity(suggestedCity)"
-    >
-      {{ suggestedCity }}
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Uložená města</ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let savedCity of cities">
-      <ion-label>{{ savedCity }}</ion-label>
-      <ion-button color="danger" slot="end" (click)="removeCity(savedCity)"
-        >Smazat</ion-button
-      >
-    </ion-item>
-  </ion-list>
+  <!-- Uložená města -->
+  <ion-card class="settings-card">
+    <ion-card-header>
+      <ion-card-title>Uložená města</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          *ngFor="let savedCity of cities"
+          class="saved-city-item"
+        >
+          <ion-label>{{ savedCity }}</ion-label>
+          <ion-button
+            color="danger"
+            slot="end"
+            (click)="removeCity(savedCity)"
+          >
+            Smazat
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

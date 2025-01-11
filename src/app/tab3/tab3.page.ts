@@ -1,50 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../services/weather.service';
+import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-tab3',
+  standalone: false,
   templateUrl: './tab3.page.html',
   styleUrls: ['./tab3.page.scss'],
-  standalone: false,
 })
-export class Tab3Page implements OnInit {
-  forecast: any;
-  cities: string[] = [];
-  selectedCity: string = '';
+export class Tab3Page {
+  displayMode: string = 'days'; // Výchozí zobrazení (Dny)
 
-  constructor(
-    private weatherService: WeatherService,
-    private storageService: StorageService
-  ) {}
-
-  async ngOnInit() {
-    // Načtení seznamu měst při prvním načtení stránky
-    await this.loadCities();
-    if (this.cities.length > 0) {
-      this.selectedCity = this.cities[0];
-      this.getForecast(this.selectedCity);
-    }
-  }
+  constructor(private storageService: StorageService) {}
 
   async ionViewWillEnter() {
-    // Načtení seznamu měst při každém přechodu na stránku
-    await this.loadCities();
-    if (this.cities.length === 0) {
-      this.forecast = null; // Vymažeme předpověď, pokud nejsou žádná města
-    } else if (!this.selectedCity || !this.cities.includes(this.selectedCity)) {
-      this.selectedCity = this.cities[0];
-      this.getForecast(this.selectedCity);
-    }
+    // Načtení zvoleného režimu z úložiště
+    const storedMode = await this.storageService.getItem('displayMode');
+    this.displayMode = storedMode || 'days';
   }
 
-  async loadCities() {
-    this.cities = await this.storageService.getCities();
-  }
-
-  getForecast(city: string) {
-    this.weatherService.getForecast(city).subscribe((data) => {
-      this.forecast = data.forecast.forecastday;
-    });
+  async updateDisplayMode() {
+    // Uložení zvoleného režimu do úložiště
+    await this.storageService.setItem('displayMode', this.displayMode);
   }
 }

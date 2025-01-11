@@ -1,0 +1,170 @@
+/* ========================= */
+/* Hlavní karta tab2         */
+/* ========================= */
+
+/* Celá karta pro uložená města */
+.saved-cities-card {
+    background: linear-gradient(to bottom, #ebe1ff, #d7ccff); /* Gradient jako v tab1 */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    color: #333; /* Barva textu */
+  }
+  
+  /* Nadpis "Uložená města" */
+  .saved-cities-card ion-list-header {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* ========================= */
+  /* Vstupní pole a návrhy     */
+  /* ========================= */
+  
+  /* Vstupní pole pro zadávání města */
+  ion-input {
+    background: linear-gradient(to bottom, #f2f4ff, #e1e6ff); /* Gradient jako v tab1 */
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: #4a4a4a;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+  }
+  
+  /* Popisek u vstupního pole */
+  ion-label[position="floating"] {
+    color: #4a4a4a;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Seznam navrhovaných měst */
+  ion-list.suggestions {
+    background: linear-gradient(to bottom, #ebe1ff, #d7ccff); /* Gradient jako v tab1 */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Jednotlivé návrhy měst */
+  ion-list.suggestions ion-item {
+    background: yell;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a4a4a;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Efekt při najetí nebo kliknutí */
+  ion-list.suggestions ion-item:hover,
+  ion-list.suggestions ion-item:active {
+    background: linear-gradient(to bottom, #d7ccff, #c2b8ff);
+    color: #333;
+  }
+  
+  /* ========================= */
+  /* Uložená města             */
+  /* ========================= */
+  
+  /* Karta jednotlivých uložených měst */
+  .saved-city-item {
+    background: linear-gradient(to bottom, #f2f4ff, #e1e6ff); /* Gradient */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Potřeba pro přepsání pseudo-elementů */
+  }
+  
+  /* Přepsání pseudoelementu ::after */
+  .saved-city-item::after {
+    content: none !important; /* Zruší vliv pseudo-elementu */
+  }
+  
+  /* Styl pro ion-label uvnitř uloženého města */
+  .saved-city-item ion-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4a4a4a; /* Neutrální barva textu */
+  }
+  
+  /* Styl pro tlačítko "Smazat" */
+  .saved-city-item ion-button {
+    --background: #ff6b6b; /* Červené pozadí tlačítka */
+    --color: white; /* Bílý text */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* ========================= */
+  /* Globální úpravy           */
+  /* ========================= */
+  
+  .search-city-item ion-item {
+    --border-color: linear-gradient(to bottom, #f2f4ff, #e1e6ff);
+    --background: linear-gradient(to bottom, #f2f4ff, #e1e6ff);
+    color: black;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #f2f4ff, #e1e6ff); /* Gradient */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Potřeba pro přepsání pseudo-elementů */
+  }
+  
+  /* Obsah karty */
+  ion-content {
+    padding: 20px;
+  }
+
+  /* ========================= */
+/* Karta pro uložená města   */
+/* ========================= */
+.settings-card {
+    background: linear-gradient(to bottom, #ebe1ff, #d7ccff); /* Gradient jako v tab1 */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    margin-top: 20px;
+    color: #333; /* Barva textu */
+  }
+  
+  /* Nadpis karty "Uložená města" */
+  .settings-card ion-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center; /* Zarovnat na střed */
+    color: #333;
+  }
+  
+  /* Obsah karty */
+  .settings-card ion-card-content {
+    background: transparent; /* Transparentní obsah */
+    padding: 10px; /* Menší odsazení */
+  }
+  
+  .list-md{
+    background: transparent !important;
+  }
+
+  .input-item ion-input{
+    padding: 10px;
+    text-align: center;
+  }

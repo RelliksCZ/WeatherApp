@@ -1,2 +1,4 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+ion-item {
+    --border-color: transparent; /* Odstraní okraje */
+    --background: transparent; /* Transparentní pozadí */
+  }
