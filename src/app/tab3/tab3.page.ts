@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 
+// Dekorátor Component pro definici komponenty
 @Component({
   selector: 'app-tab3',
   standalone: false,
@@ -8,18 +9,18 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./tab3.page.scss'],
 })
 export class Tab3Page {
-  displayMode: string = 'days'; // Výchozí zobrazení (Dny)
+  displayMode: string = 'days'; // Výchozí režim zobrazení (dny)
 
   constructor(private storageService: StorageService) {}
 
+  // Načtení zvoleného režimu při přechodu na stránku
   async ionViewWillEnter() {
-    // Načtení zvoleného režimu z úložiště
-    const storedMode = await this.storageService.getItem('displayMode');
-    this.displayMode = storedMode || 'days';
+    const storedMode = await this.storageService.getItem('displayMode'); // Získání uloženého režimu
+    this.displayMode = storedMode || 'days'; // Nastavení režimu (výchozí je "dny")
   }
 
+  // Aktualizace zvoleného režimu v úložišti
   async updateDisplayMode() {
-    // Uložení zvoleného režimu do úložiště
     await this.storageService.setItem('displayMode', this.displayMode);
   }
 }

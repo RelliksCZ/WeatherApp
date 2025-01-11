@@ -46,8 +46,18 @@
   text-transform: none; /* Nezměněný text */
 }
 
-ion-title{
+.settings-card ion-title{
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+}
+
+.about-card ion-card-content{
+  text-align: center;
+}
+
+.settings-card ion-segment-button{
+  background-color: white !important;
+  font-weight: bold;
+  margin: 10px;
 }

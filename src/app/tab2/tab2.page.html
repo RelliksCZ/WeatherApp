@@ -1,16 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Nastavení</ion-title>
+    <!-- Nadpis stránky -->
+    <ion-title>Your cities</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="settings-content">
-  <!-- Zadání města -->
+  <!-- Karta pro přidání města -->
   <ion-card class="settings-card">
     <ion-card-header>
-      <ion-card-title>Přidat město</ion-card-title>
+      <!-- Nadpis karty -->
+      <ion-card-title>Add city</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <!-- Pole pro zadání města -->
       <ion-item class="input-item">
         <ion-input
           [(ngModel)]="city"
@@ -18,6 +21,7 @@
           (ionInput)="searchCities($event)"
         ></ion-input>
       </ion-item>
+      <!-- Seznam navrhovaných měst -->
       <ion-list *ngIf="suggestedCities.length > 0" class="search-city-item">
         <ion-item
           *ngFor="let suggestedCity of suggestedCities"
@@ -30,24 +34,28 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- Uložená města -->
+  <!-- Karta pro uložená města -->
   <ion-card class="settings-card">
     <ion-card-header>
-      <ion-card-title>Uložená města</ion-card-title>
+      <!-- Nadpis karty -->
+      <ion-card-title>Saved cities</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <!-- Seznam uložených měst -->
       <ion-list>
         <ion-item
           *ngFor="let savedCity of cities"
           class="saved-city-item"
         >
+          <!-- Název města -->
           <ion-label>{{ savedCity }}</ion-label>
+          <!-- Tlačítko pro odstranění města -->
           <ion-button
             color="danger"
             slot="end"
             (click)="removeCity(savedCity)"
           >
-            Smazat
+            Delete
           </ion-button>
         </ion-item>
       </ion-list>

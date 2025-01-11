@@ -1,33 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Nastavení</ion-title>
+    <!-- Nadpis stránky -->
+    <ion-title>Preferences</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- O aplikaci -->
+  <!-- Karta "O aplikaci" -->
   <ion-card class="about-card">
     <ion-card-header>
-      <ion-card-title>O aplikaci</ion-card-title>
+      <!-- Nadpis karty -->
+      <ion-card-title>About app</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Tato aplikace poskytuje aktuální informace o počasí a předpověď pro
-      různá města. Můžete ukládat svá oblíbená města a přizpůsobit vzhled
-      aplikace podle svých preferencí.
+    <ion-card-content class="content-center">
+      <!-- Text popisující aplikaci -->
+      This app provides up-to-date weather information and forecasts for
+      different cities. You can save your favorite cities and customize the appearance
+      the look of the app to your preferences.
     </ion-card-content>
   </ion-card>
 
-  <!-- Nastavení vzhledu -->
+  <!-- Karta pro nastavení vzhledu -->
   <ion-card class="settings-card">
     <ion-card-header>
-      <ion-card-title>Preference zobrazení</ion-card-title>
+      <!-- Nadpis karty -->
+      <ion-card-title>Display settings</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-title >Formát zobrazení následujích dní</ion-title>
+      <!-- Nadpis pro segment -->
+      <ion-title>Format of upcoming weather</ion-title>
       <ion-item lines="none">
+        <!-- Segment pro výběr režimu zobrazení -->
         <ion-segment [(ngModel)]="displayMode" (ionChange)="updateDisplayMode()">
-          <ion-segment-button value="days">Dny</ion-segment-button>
-          <ion-segment-button value="dates">Datum</ion-segment-button>
+          <ion-segment-button value="days">Days</ion-segment-button>
+          <ion-segment-button value="dates">Dates</ion-segment-button>
         </ion-segment>
       </ion-item>
     </ion-card-content>
