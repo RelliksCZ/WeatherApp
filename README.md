@@ -27,15 +27,5 @@ This Weather Application provides users with current weather information and a 5
 - **WeatherAPI**: To fetch real-time weather and forecast data.
 - **Ionic Storage**: For persisting user data and preferences.
 
----
-
-## Installation
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) installed
-- [Ionic CLI](https://ionicframework.com/docs/cli) installed globally
-
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
+## API Used
+- **Weather API**: https://www.weatherapi.com
